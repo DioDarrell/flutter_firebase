@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "265560219838-mnbb20kpj17vtio579hq23u1l6pdbgk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_firebase",
+            "certificate_hash": "cac4d80cfc87ad682f8856fc033073a77ca7ee61"
+          }
+        },
+        {
           "client_id": "265560219838-9f5bduboplisn9khplas4l0lhsp9dii7.apps.googleusercontent.com",
           "client_type": 3
         }
