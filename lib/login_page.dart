@@ -23,7 +23,8 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
+              Image.network('https://images.tokopedia.net/img/cache/215-square/shops-1/2017/11/21/2397043/2397043_6b814069-95f2-40d8-8d70-218de810f6c5.jpg'),
+              //FlutterLogo(size: 150),
               SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.all(8.0),
