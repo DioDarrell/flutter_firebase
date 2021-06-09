@@ -1,22 +1,101 @@
 // Copyright (c) 2019 Souvik Biswas
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/login_page.dart';
 import 'package:flutter_firebase/sign_in.dart';
+import 'package:flutter_firebase/customer_page.dart';
+import 'package:flutter_firebase/item_page.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter/home_page.dart';
 
-void main() => runApp(FirstScreen());
-
 class FirstScreen extends StatelessWidget {
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Store'),
+        title: new Text("Home Store"),
+        centerTitle: true,
+        //automaticallyImplyLeading: false,
+        elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
+      ),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: Text(name),
+              accountEmail: Text(email),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(imageUrl),
+              ),
+            ),
+            new ListTile(
+              title: new Text("Log Out"),
+              onTap: (){
+                signOutGoogle();
+                Navigator.of(context).pushAndRemoveUntil(
+                       MaterialPageRoute(builder: (context) {
+                     return LoginPage();
+                   }), ModalRoute.withName('/'));
+              },
+            )
+          ],
+        ),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        color: Colors.white,
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: <Widget>[
+            Card(
+                child: RaisedButton(
+              color: Colors.blue,
+              child: Column(
+                children: [
+                  new Icon(
+                    Icons.people,
+                    size: 100.0,
+                    color: Colors.white,
+                  ),
+                  Text("Customer",
+                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                ],
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeCustomer()),
+                );
+              },
+            )),
+            Card(
+                child: RaisedButton(
+              color: Colors.blue,
+              child: Column(
+                children: [
+                  new Icon(
+                    Icons.assignment_turned_in_rounded,
+                    size: 100.0,
+                    color: Colors.white,
+                  ),
+                  Text("Stock",
+                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                ],
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeItem()),
+                );
+              },
+            )),
+          ],
+        ),
       ),
     );
   }
 }
+
 // class FirstScreen extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
