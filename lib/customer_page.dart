@@ -6,7 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 class HomeCustomer extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController jmlhPesanController = TextEditingController();
-  CollectionReference _pengguna = FirebaseFirestore.instance.collection('pengguna');
+  final TextEditingController alamatController = TextEditingController();
+  CollectionReference _pengguna =
+      FirebaseFirestore.instance.collection('pengguna');
 
   void clearInputText() {
     nameController.text = "";
@@ -26,7 +28,8 @@ class HomeCustomer extends StatelessWidget {
             Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                   decoration: BoxDecoration(color: Colors.white, boxShadow: [
                     BoxShadow(
                         color: Colors.black12,
@@ -35,7 +38,7 @@ class HomeCustomer extends StatelessWidget {
                         spreadRadius: 3)
                   ]),
                   width: double.infinity,
-                  height: 130,
+                  height: 160,
                   child: Row(
                     children: [
                       SizedBox(
@@ -70,6 +73,19 @@ class HomeCustomer extends StatelessWidget {
                                       fontSize: 16)),
                               keyboardType: TextInputType.number,
                             ),
+                            TextField(
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16),
+                              controller: alamatController,
+                              decoration: InputDecoration(
+                                  hintText: "Isi Alamat",
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16)),
+                            ),
                           ],
                         ),
                       ),
@@ -91,7 +107,9 @@ class HomeCustomer extends StatelessWidget {
                               // TODO 1 ADD DATA HERE
                               await _pengguna.add({
                                 "name": nameController.text,
-                                "jmlh_pesan": int.tryParse(jmlhPesanController.text)
+                                "jmlh_pesan":
+                                    int.tryParse(jmlhPesanController.text),
+                                "alamat": alamatController.text
                               });
                               clearInputText();
                             }),
@@ -104,38 +122,44 @@ class HomeCustomer extends StatelessWidget {
                 children: [
                   // TODO 2 VIEW, update , and delete DATA HERE
                   /// hanya get sekali saja jika menggunakan FutureBuilder
-                  
-                  FutureBuilder<QuerySnapshot>(
-                    future: _pengguna.get(),
-                    builder: (buildContext, snapshot) {
-                      return Column(
-                        children: snapshot.data.docs
-                            .map((e) =>
-                                ItemCard(e.data()['name'], e.data()['jmlh_pesan']))
-                            .toList(),
-                      );
-                    },
-                  ),
-                  
+
+                  // FutureBuilder<QuerySnapshot>(
+                  //   future: _pengguna.get(),
+                  //   builder: (buildContext, snapshot) {
+                  //     return Column(
+                  //       children: snapshot.data.docs
+                  //           .map((e) => ItemCard(e.data()['name'],
+                  //               e.data()['jmlh_pesan'], e.data()['alamat']))
+                  //           .toList(),
+                  //     );
+                  //   },
+                  // ),
 
                   // get secara realtime jikga menggunakan stream builder
                   StreamBuilder<QuerySnapshot>(
                     // contoh penggunaan srteam
                     // _pengguna.orderBy('age', descending: true).snapshots()
                     // _pengguna.where('age', isLessThan: 30).snapshots()
-                    stream:
-                        _pengguna.orderBy('jmlh_pesan', descending: true).snapshots(),
+                    stream: _pengguna
+                        .orderBy('jmlh_pesan', descending: true)
+                        .snapshots(),
                     builder: (buildContext, snapshot) {
-                      if (snapshot.data == null) return CircularProgressIndicator();
+                      if (snapshot.data == null)
+                        return CircularProgressIndicator();
                       return Column(
                         children: snapshot.data.docs
                             .map((e) => ItemCard(
                                   e.data()['name'],
                                   e.data()['jmlh_pesan'],
+                                  e.data()['alamat'],
                                   onUpdate: () {
-                                    _pengguna
-                                        .doc(e.id)
-                                        .update({"jmlh_pesan": e.data()['jmlh_pesan']});
+                                    _pengguna.doc(e.id).update({
+                                      "name": nameController.text,
+                                      "jumlah": int.tryParse(
+                                          jmlhPesanController.text),
+                                      "alamat": alamatController.text
+                                    });
+                                   // clearInputText();
                                   },
                                   onDelete: () {
                                     _pengguna.doc(e.id).delete();

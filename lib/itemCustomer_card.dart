@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class ItemCard extends StatelessWidget {
   final String name;
   final int jmlh_pesan;
+   final String alamat;
   //// Pointer to Update Function
   final Function onUpdate;
   //// Pointer to Delete Function
   final Function onDelete;
 
-  ItemCard(this.name, this.jmlh_pesan, {this.onUpdate, this.onDelete});
+  ItemCard(this.name, this.jmlh_pesan, this.alamat, {this.onUpdate, this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class ItemCard extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: Text(
-                  name,
+                  "Nama :"+name,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
@@ -36,7 +37,14 @@ class ItemCard extends StatelessWidget {
                 ),
               ),
               Text(
-                "$jmlh_pesan",
+                "No.Pesanan :$jmlh_pesan",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16),
+              ),
+              Text(
+                "Alamat : "+alamat,
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,

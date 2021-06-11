@@ -125,16 +125,20 @@ class HomeItem extends StatelessWidget {
                     stream:
                         _item.orderBy('jumlah', descending: true).snapshots(),
                     builder: (buildContext, snapshot) {
-                      if (snapshot.data == null) return CircularProgressIndicator();
+                      if (snapshot.data == null)
+                        return CircularProgressIndicator();
                       return Column(
                         children: snapshot.data.docs
                             .map((e) => ItemCard(
                                   e.data()['tipe'],
                                   e.data()['jumlah'],
                                   onUpdate: () {
-                                    _item
-                                        .doc(e.id)
-                                        .update({"tipe": e.data()['tipe']});
+                                    _item.doc(e.id).update({
+                                      "tipe": tipeController.text,
+                                      "jumlah":
+                                          int.tryParse(jmlhController.text)
+                                    });
+                                   // clearInputText();
                                   },
                                   onDelete: () {
                                     _item.doc(e.id).delete();
