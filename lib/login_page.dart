@@ -24,9 +24,9 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.network(
-                  'https://images.tokopedia.net/img/cache/215-square/shops-1/2017/11/21/2397043/2397043_6b814069-95f2-40d8-8d70-218de810f6c5.jpg'),
+                  'https://user-images.githubusercontent.com/62085991/122327313-dc4bed80-cf57-11eb-9695-c0b24bab162c.png', width: 200, height: 400,),
               //FlutterLogo(size: 150),
-              SizedBox(height: 50),
+           //   SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
