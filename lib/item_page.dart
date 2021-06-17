@@ -17,8 +17,11 @@ class HomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('Stock Form'),
+          backgroundColor: Colors.yellow,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          title: Text('Stock Form', style: TextStyle(color: Colors.black)),
         ),
         backgroundColor: Colors.white,
         body: Column(
@@ -50,7 +53,12 @@ class HomeItem extends StatelessWidget {
                                   fontSize: 16),
                               controller: tipeController,
                               decoration: InputDecoration(
-                                  hintText: "Isi Tipe",
+                                  hintText: "Isi Kode Kaos",
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 10.0, 20.0, 10.0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
                                   hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w600,
@@ -64,6 +72,11 @@ class HomeItem extends StatelessWidget {
                               controller: jmlhController,
                               decoration: InputDecoration(
                                   hintText: "Isi Jumlah",
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 1.0, 20.0, 1.0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
                                   hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w600,
@@ -80,11 +93,11 @@ class HomeItem extends StatelessWidget {
                         child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             child: Text(
                               'Add Data',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             onPressed: () async {
@@ -138,7 +151,7 @@ class HomeItem extends StatelessWidget {
                                       "jumlah":
                                           int.tryParse(jmlhController.text)
                                     });
-                                   // clearInputText();
+                                    // clearInputText();
                                   },
                                   onDelete: () {
                                     _item.doc(e.id).delete();

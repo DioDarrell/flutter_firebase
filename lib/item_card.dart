@@ -27,14 +27,14 @@ class ItemCard extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
-                child: Text(tipe,
+                child: Text("Kode : "+tipe,
                         style: TextStyle(color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16),
                         ),
               ),
               Text(
-                "$jumlah ",
+                "Jumlah : $jumlah ",
                 style: TextStyle(color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16),

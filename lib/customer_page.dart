@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_firebase/itemCustomer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,8 +21,11 @@ class HomeCustomer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('Customer Form'),
+          backgroundColor: Colors.yellow,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          title: Text('Customer Form',style: TextStyle(color: Colors.black),),
         ),
         backgroundColor: Colors.white,
         body: Column(
@@ -54,6 +59,11 @@ class HomeCustomer extends StatelessWidget {
                               controller: nameController,
                               decoration: InputDecoration(
                                   hintText: "Isi Nama",
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 10.0, 20.0, 10.0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
                                   hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w600,
@@ -66,7 +76,12 @@ class HomeCustomer extends StatelessWidget {
                                   fontSize: 16),
                               controller: jmlhPesanController,
                               decoration: InputDecoration(
-                                  hintText: "Isi Jumlah Pesanan",
+                                  hintText: "Isi No. Pesanan",
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 10.0, 20.0, 10.0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
                                   hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w600,
@@ -81,6 +96,11 @@ class HomeCustomer extends StatelessWidget {
                               controller: alamatController,
                               decoration: InputDecoration(
                                   hintText: "Isi Alamat",
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 10.0, 20.0, 10.0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
                                   hintStyle: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w600,
@@ -96,11 +116,11 @@ class HomeCustomer extends StatelessWidget {
                         child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             child: Text(
                               'Add Data',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             onPressed: () async {

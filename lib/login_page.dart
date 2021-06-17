@@ -23,14 +23,21 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.network('https://images.tokopedia.net/img/cache/215-square/shops-1/2017/11/21/2397043/2397043_6b814069-95f2-40d8-8d70-218de810f6c5.jpg'),
+              Image.network(
+                  'https://images.tokopedia.net/img/cache/215-square/shops-1/2017/11/21/2397043/2397043_6b814069-95f2-40d8-8d70-218de810f6c5.jpg'),
               //FlutterLogo(size: 150),
               SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(hintText: 'Email'),
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0),
+                    ),
+                  ),
                   onChanged: (value) {
                     setState(() {
                       _email = value.trim();
@@ -42,7 +49,12 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(hintText: 'Password'),
+                  decoration: InputDecoration(hintText: 'Password',
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0),
+                    ),
+                  ),
                   onChanged: (value) {
                     setState(() {
                       _password = value.trim();
@@ -94,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
           if (result != null) {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context)  {
+                builder: (context) {
                   return FirstScreen();
                 },
               ),

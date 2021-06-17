@@ -1,4 +1,6 @@
 // Copyright (c) 2019 Souvik Biswas
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/login_page.dart';
@@ -11,9 +13,15 @@ import 'package:flutter_firebase/item_page.dart';
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      theme: ThemeData(brightness: Brightness.dark),
+      themeMode: ThemeMode.light,
+    home: Scaffold(
       appBar: AppBar(
-        title: new Text("Home Store"),
+        title: new Text("Home Store", style: TextStyle(color: Colors.yellow),),
+        iconTheme: IconThemeData(
+            color: Colors.yellow, //change your color here
+          ),
         centerTitle: true,
         //automaticallyImplyLeading: false,
         elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
@@ -43,22 +51,22 @@ class FirstScreen extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
-        color: Colors.white,
+        color: Colors.black,
         child: GridView.count(
           crossAxisCount: 2,
           children: <Widget>[
             Card(
                 child: RaisedButton(
-              color: Colors.blue,
+              color: Colors.yellow,
               child: Column(
                 children: [
                   new Icon(
                     Icons.people,
                     size: 100.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   Text("Customer",
-                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                      style: TextStyle(fontSize: 27, color: Colors.black)),
                 ],
               ),
               onPressed: () {
@@ -70,16 +78,16 @@ class FirstScreen extends StatelessWidget {
             )),
             Card(
                 child: RaisedButton(
-              color: Colors.blue,
+              color: Colors.yellow,
               child: Column(
                 children: [
                   new Icon(
                     Icons.assignment_turned_in_rounded,
                     size: 100.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   Text("Stock",
-                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                      style: TextStyle(fontSize: 27, color: Colors.black)),
                 ],
               ),
               onPressed: () {
@@ -92,7 +100,7 @@ class FirstScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),);
   }
 }
 

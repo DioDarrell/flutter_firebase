@@ -1,5 +1,4 @@
 // Copyright (c) 2019 Souvik Biswas
-// Copyright (c) 2019 Souvik Biswas
 import 'package:flutter/foundation.dart';
 import 'package:flutter_firebase/customer_page.dart';
 import 'package:flutter_firebase/item_page.dart';
@@ -8,13 +7,25 @@ import 'package:flutter_firebase/login_page.dart';
 import 'package:flutter_firebase/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
+
 class FirstScreenEmail extends StatelessWidget {
+  
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      theme: ThemeData(brightness: Brightness.dark),
+      themeMode: ThemeMode.light,
+    home: Scaffold(
       appBar: AppBar(
-        title: new Text("Home Store"),
+        title: new Text(
+            "Home Store",
+            style: TextStyle(color: Colors.yellow),
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.yellow, //change your color here
+          ),
         centerTitle: true,
         //automaticallyImplyLeading: false,
         elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
@@ -22,13 +33,13 @@ class FirstScreenEmail extends StatelessWidget {
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountName: Text(auth.currentUser.displayName),
-              accountEmail: Text(auth.currentUser.email),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(auth.currentUser.photoURL),
-              ),
-            ),
+             new UserAccountsDrawerHeader(
+            //   accountName: Text(auth.currentUser.displayName),
+               accountEmail: Text(auth.currentUser.email),
+            //   // currentAccountPicture: CircleAvatar(
+               //   backgroundImage: NetworkImage(auth.currentUser.photoURL),
+            //   // ),
+             ),
             new ListTile(
               title: new Text("Log Out"),
               onTap: () {
@@ -44,22 +55,22 @@ class FirstScreenEmail extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
-        color: Colors.white,
+        color: Colors.black,
         child: GridView.count(
           crossAxisCount: 2,
           children: <Widget>[
             Card(
                 child: RaisedButton(
-              color: Colors.blue,
+              color: Colors.yellow,
               child: Column(
                 children: [
                   new Icon(
                     Icons.people,
                     size: 100.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   Text("Customer",
-                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                      style: TextStyle(fontSize: 27, color: Colors.black)),
                 ],
               ),
               onPressed: () {
@@ -71,16 +82,16 @@ class FirstScreenEmail extends StatelessWidget {
             )),
             Card(
                 child: RaisedButton(
-              color: Colors.blue,
+              color: Colors.yellow,
               child: Column(
                 children: [
                   new Icon(
                     Icons.assignment_turned_in_rounded,
                     size: 100.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   Text("Stock",
-                      style: TextStyle(fontSize: 27, color: Colors.white)),
+                      style: TextStyle(fontSize: 27, color: Colors.black)),
                 ],
               ),
               onPressed: () {
@@ -93,6 +104,7 @@ class FirstScreenEmail extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
